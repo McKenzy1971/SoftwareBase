@@ -17,11 +17,11 @@ namespace SoftwareBase
                 xmlSerializer.Serialize(s, obj);
         }
 
-        public static Object[] Deserialize(string path)
+        public static T[] Deserialize(string path)
         {
             using (Stream s = File.OpenRead(path))
             {
-                Object[] objects = (Object[])xmlSerializer.Deserialize(s);
+                T[] objects = (T[])xmlSerializer.Deserialize(s);
                 return objects;
             }
         }
