@@ -32,9 +32,9 @@ namespace SoftwareBase.ViewModelBase
         public DelegateCommand(Action<T> executeHdl, Predicate<T> canExecuteHdl)
         {
             this.canExecuteHdl = canExecuteHdl;
+            this.executeHdl = executeHdl;
             if (this.executeHdl == null)
                 throw new ArgumentNullException("executeHdl", "Please specifiy the command");
-            this.executeHdl = executeHdl;
         }
         #endregion
 
