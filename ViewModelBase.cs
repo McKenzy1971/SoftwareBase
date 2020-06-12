@@ -17,15 +17,22 @@ namespace SoftwareBase.ViewModelBase
         }
         public Folder folder = new Folder();
     }
-
+    /// <summary>
+    /// DelegateCommand base class
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class DelegateCommand<T> : ICommand
     {
         #region constructos
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="executeHdl">Method that's been called at Execute</param>
+        /// <param name="canExecuteHdl">Method that's called to check CanExecute</param>
         public DelegateCommand(Action<T> executeHdl, Predicate<T> canExecuteHdl)
         {
             this.canExecuteHdl = canExecuteHdl;
-            if (this.canExecuteHdl == null)
+            if (this.executeHdl == null)
                 throw new ArgumentNullException("executeHdl", "Please specifiy the command");
             this.executeHdl = executeHdl;
         }
@@ -37,7 +44,9 @@ namespace SoftwareBase.ViewModelBase
         public event EventHandler CanExecuteChanged;
 
         #region Methods
-
+        /// <summary>
+        /// Invokes CanExecuteChanged evant
+        /// </summary>
         public void RaiseCanExecuteChanged()
         {
             this.CanExecuteChanged?.Invoke(this, null);
