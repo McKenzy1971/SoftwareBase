@@ -17,13 +17,13 @@ namespace SoftwareBase
         {
             try
             {
-                DirectoryPath = directoryPath + @"\";
+                this.DirectoryPath = directoryPath + @"\";
             }
             catch (DirectoryNotFoundException e)
             {
                 throw new DirectoryNotFoundException("Directory not exist", e);
             }
-            Files = DirectoryInfo.GetFiles();
+            this.Files = this.DirectoryInfo.GetFiles();
         }
         #endregion
 
@@ -82,6 +82,16 @@ namespace SoftwareBase
                     return true;
             }
             return false;
+        }
+        /// <summary>
+        /// Creates directory
+        /// </summary>
+        /// <param name="path">Directory path</param>
+        /// <returns>The directorys path as string</returns>
+        public static string CreateDirectory(string path)
+        {
+            Directory.CreateDirectory(path);
+            return path;
         }
         #endregion
     }
