@@ -69,6 +69,20 @@ namespace SoftwareBase
             }
             Files = DirectoryInfo.GetFiles(DirectoryPath);
         }
+        /// <summary>
+        /// Check file exist
+        /// </summary>
+        /// <param name="filename">The filename inkl. extention</param>
+        /// <returns>true if file was found, otherwise false</returns>
+        public bool CheckFileExist(string filename)
+        {
+            foreach(FileInfo fileInfo in Files)
+            {
+                if (fileInfo.Name == filename)
+                    return true;
+            }
+            return false;
+        }
         #endregion
     }
     #endregion
