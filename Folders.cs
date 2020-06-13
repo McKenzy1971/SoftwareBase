@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Linq;
 
 namespace SoftwareBase
 {
@@ -13,7 +15,7 @@ namespace SoftwareBase
         /// <summary>
         /// Creats new instanz of this object
         /// </summary>
-        public Folder() { this.File = new SortedSet<string>(); }
+        public Folder() { this.Files = new HashSet<string>(); }
 
         #endregion
 
@@ -25,7 +27,9 @@ namespace SoftwareBase
         /// <summary>
         /// Gets used files in this directory
         /// </summary>
-        public SortedSet<string> File { get; private set; }
+        public HashSet<string> Files { get; private set; }
+
+        public string File { get; private set; }
         /// <summary>
         /// Gets directory informations of this directory
         /// </summary>
@@ -49,16 +53,32 @@ namespace SoftwareBase
         public void AddFile(string fileName)
         {
             if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhiteSpace, Check File the Filename");
+                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhiteSpace, please specify the filename");
             if (!String.IsNullOrWhiteSpace(this.DirectoryPath))
             {
-                if (this.File.Add(fileName))
-                    this.File.Add(fileName);
+                if (this.Files.Add(fileName))
+                    this.Files.Add(fileName);
             }
             else
-                throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace");
+                throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace, please set DirecetoryPath first.");
         }
-        
+
+        public void SetActivFile(string fileName)
+        {
+            if (String.IsNullOrWhiteSpace(fileName))
+                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhitespace, please specify the filename");
+            if (this.Files.Count == 0)
+                throw new NullReferenceException(nameof(this.Files) + "Is empty");
+            if (this.Files.Contains(fileName))
+            {
+                foreach (string item in Files)
+                {
+                    if (item == fileName)
+                        this.File = this.DirectoryPath + item;
+                }
+            }
+        }
+
         #endregion
     }
 }
