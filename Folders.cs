@@ -76,7 +76,7 @@ namespace SoftwareBase
         /// <returns>true if file was found, otherwise false</returns>
         public bool CheckFileExist(string filename)
         {
-            foreach(FileInfo fileInfo in Files)
+            foreach (FileInfo fileInfo in Files)
             {
                 if (fileInfo.Name == filename)
                     return true;
@@ -92,6 +92,18 @@ namespace SoftwareBase
         {
             Directory.CreateDirectory(path);
             return path;
+        }
+        /// <summary>
+        /// Check directory exist
+        /// </summary>
+        /// <param name="path">Directory path</param>
+        /// <returns>true if directory exist, otherwise false</returns>
+        public static bool CheckDirectoryExist(string path)
+        {
+            if (Directory.Exists(path))
+                return true;
+            else
+                return false;
         }
         #endregion
     }
