@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 
 namespace SoftwareBase
 {
+    #region Classes
     /// <summary>
     /// Class for managment of files and directories
     /// </summary>
@@ -13,72 +10,66 @@ namespace SoftwareBase
     {
         #region Constructors
         /// <summary>
-        /// Creats new instanz of this object
+        /// Creates new instanz of Folder
         /// </summary>
-        public Folder() { this.Files = new HashSet<string>(); }
-
+        /// <param name="directoryPath">The directory path</param>
+        public Folder(string directoryPath)
+        {
+            try
+            {
+                DirectoryPath = directoryPath + @"\";
+            }
+            catch (DirectoryNotFoundException e)
+            {
+                throw new DirectoryNotFoundException("Directory not exist", e);
+            }
+            Files = DirectoryInfo.GetFiles();
+        }
         #endregion
 
         #region Properties
         /// <summary>
-        /// Gets or sets path of the directory
+        /// Gets or sets path of directory
         /// </summary>
         public string DirectoryPath { get; set; }
         /// <summary>
-        /// Gets used files in this directory
+        /// Get costum files in this directory
         /// </summary>
-        public HashSet<string> Files { get; private set; }
-
-        public string File { get; private set; }
+        public FileInfo[] Files { get; private set; }
         /// <summary>
-        /// Gets directory informations of this directory
+        /// Gets directory informations
         /// </summary>
-        public DirectoryInfo DirectoryInfo
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(this.DirectoryPath))
-                    throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace");
-                return new DirectoryInfo(this.DirectoryPath);
-            }
-        }
-
+        public DirectoryInfo DirectoryInfo { get { return new DirectoryInfo(DirectoryPath); } }
         #endregion
 
         #region Methods
         /// <summary>
-        /// Adds a filename to File property on this Object
+        /// Gets a spacific file
         /// </summary>
-        /// <param name="fileName">The filename you choose</param>
-        public void AddFile(string fileName)
+        /// <param name="filename">The filename inkl. extension</param>
+        /// <returns>Directory path and filename as string</returns>
+        public string GetFile(string filename)
         {
-            if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhiteSpace, please specify the filename");
-            if (!String.IsNullOrWhiteSpace(this.DirectoryPath))
+            foreach (FileInfo fileInfo in Files)
             {
-                if (this.Files.Add(fileName))
-                    this.Files.Add(fileName);
+                if (fileInfo.Name == filename)
+                    return DirectoryPath + filename;
             }
-            else
-                throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace, please set DirecetoryPath first.");
+            throw new FileNotFoundException("File not found", filename);
         }
-
-        public void SetActivFile(string fileName)
+        /// <summary>
+        /// Add file to directory
+        /// </summary>
+        /// <param name="filename">The filename inkl. extension</param>
+        public void AddFile(string filename)
         {
-            if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhitespace, please specify the filename");
-            if (this.Files.Count == 0)
-                throw new NullReferenceException(nameof(this.Files) + "Is empty");
-            if (this.Files.Contains(fileName))
+            if (!File.Exists(DirectoryPath + filename))
             {
-                foreach (string item in Files)
-                {
-                    if (item == fileName)
-                        this.File = this.DirectoryPath + item;
-                }
+                using (File.Create(DirectoryPath + filename)) { };
             }
+            Files = DirectoryInfo.GetFiles(DirectoryPath);
         }
-
         #endregion
     }
+    #endregion
 }

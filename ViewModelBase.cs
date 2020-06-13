@@ -15,7 +15,6 @@ namespace SoftwareBase.ViewModelBase
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public Folder folder = new Folder();
     }
     /// <summary>
     /// DelegateCommand base class
