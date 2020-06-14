@@ -10,19 +10,14 @@ namespace SoftwareBase
     {
         #region Constructors
         /// <summary>
-        /// Creates new instanz of Folder
+        /// Sets path or creates it
         /// </summary>
         /// <param name="directoryPath">The directory path</param>
         public Folder(string directoryPath)
         {
-            try
-            {
-                this.DirectoryPath = directoryPath + @"\";
-            }
-            catch (DirectoryNotFoundException e)
-            {
-                throw new DirectoryNotFoundException("Directory not exist", e);
-            }
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+            this.DirectoryPath = directoryPath + @"\";
             this.Files = this.DirectoryInfo.GetFiles();
         }
         #endregion
@@ -82,28 +77,6 @@ namespace SoftwareBase
                     return true;
             }
             return false;
-        }
-        /// <summary>
-        /// Creates directory
-        /// </summary>
-        /// <param name="path">Directory path</param>
-        /// <returns>The directorys path as string</returns>
-        public static string CreateDirectory(string path)
-        {
-            Directory.CreateDirectory(path);
-            return path;
-        }
-        /// <summary>
-        /// Check directory exist
-        /// </summary>
-        /// <param name="path">Directory path</param>
-        /// <returns>true if directory exist, otherwise false</returns>
-        public static bool CheckDirectoryExist(string path)
-        {
-            if (Directory.Exists(path))
-                return true;
-            else
-                return false;
         }
         #endregion
     }
