@@ -5,6 +5,7 @@ using System.Windows.Input;
 
 namespace SoftwareBase.ViewModelBase
 {
+    #region Classes
     /// <summary>
     /// Base class of all ViewModels
     /// </summary>
@@ -16,6 +17,7 @@ namespace SoftwareBase.ViewModelBase
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
     /// <summary>
     /// DelegateCommand base class
     /// </summary>
@@ -35,10 +37,11 @@ namespace SoftwareBase.ViewModelBase
             if (this.executeHdl == null)
                 throw new ArgumentNullException("executeHdl", "Please specifiy the command");
         }
+        public DelegateCommand(Action<T> executeHdl) : this(executeHdl, null) { }
         #endregion
 
-        private Predicate<T> canExecuteHdl { get; set; }
         private Action<T> executeHdl { get; set; }
+        private Predicate<T> canExecuteHdl { get; set; }
 
         public event EventHandler CanExecuteChanged;
 
@@ -46,20 +49,12 @@ namespace SoftwareBase.ViewModelBase
         /// <summary>
         /// Invokes CanExecuteChanged evant
         /// </summary>
-        public void RaiseCanExecuteChanged()
-        {
-            this.CanExecuteChanged?.Invoke(this, null);
-        }
+        public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, null);
 
-        public bool CanExecute(object parameter)
-        {
-            return canExecuteHdl == null || canExecuteHdl((T)parameter) == true;
-        }
+        public bool CanExecute(object parameter) => canExecuteHdl == null || canExecuteHdl((T)parameter) == true;
 
-        public void Execute(object parameter)
-        {
-            executeHdl((T)parameter);
-        }
+        public void Execute(object parameter) => executeHdl((T)parameter);
         #endregion
     }
+    #endregion
 }
