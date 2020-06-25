@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 
 namespace SoftwareBase
 {
+    #region Classes
     /// <summary>
     /// Class for managment of files and directories
     /// </summary>
@@ -11,54 +10,75 @@ namespace SoftwareBase
     {
         #region Constructors
         /// <summary>
-        /// Creats new instanz of this object
+        /// Sets path or creates it
         /// </summary>
-        public Folder() { this.File = new SortedSet<string>(); }
-
+        /// <param name="directoryPath">The directory path</param>
+        public Folder(string directoryPath)
+        {
+            if (!Directory.Exists(directoryPath))
+                Directory.CreateDirectory(directoryPath);
+            this.DirectoryPath = directoryPath + @"\";
+            this.Files = this.DirectoryInfo.GetFiles();
+        }
         #endregion
 
         #region Properties
         /// <summary>
-        /// Gets or sets path of the directory
+        /// Gets or sets path of directory
         /// </summary>
         public string DirectoryPath { get; set; }
         /// <summary>
-        /// Gets used files in this directory
+        /// Get costum files in this directory
         /// </summary>
-        public SortedSet<string> File { get; private set; }
+        public FileInfo[] Files { get; private set; }
         /// <summary>
-        /// Gets directory informations of this directory
+        /// Gets directory informations
         /// </summary>
-        public DirectoryInfo DirectoryInfo
-        {
-            get
-            {
-                if (String.IsNullOrWhiteSpace(this.DirectoryPath))
-                    throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace");
-                return new DirectoryInfo(this.DirectoryPath);
-            }
-        }
-
+        public DirectoryInfo DirectoryInfo { get { return new DirectoryInfo(DirectoryPath); } }
         #endregion
 
         #region Methods
         /// <summary>
-        /// Adds a filename to File property on this Object
+        /// Gets a spacific file
         /// </summary>
-        /// <param name="fileName">The filename you choose</param>
-        public void AddFile(string fileName)
+        /// <param name="filename">The filename inkl. extension</param>
+        /// <returns>Directory path and filename as string</returns>
+        public string GetFile(string filename)
         {
-            if (String.IsNullOrWhiteSpace(fileName))
-                throw new ArgumentNullException(nameof(fileName), "IsNullOrWhiteSpace, Check File the Filename");
-            if (!String.IsNullOrWhiteSpace(this.DirectoryPath))
+            foreach (FileInfo fileInfo in Files)
             {
-                if (this.File.Add(fileName))
-                    this.File.Add(fileName);
+                if (fileInfo.Name == filename)
+                    return DirectoryPath + filename;
             }
-            else
-                throw new ArgumentNullException("this.DirectoryPath", "IsNullOrWhiteSpace");
+            throw new FileNotFoundException("File not found", filename);
         }
-        
+        /// <summary>
+        /// Add file to directory
+        /// </summary>
+        /// <param name="filename">The filename inkl. extension</param>
+        public void AddFile(string filename)
+        {
+            if (!File.Exists(DirectoryPath + filename))
+            {
+                using (File.Create(DirectoryPath + filename)) { };
+            }
+            Files = DirectoryInfo.GetFiles(DirectoryPath);
+        }
+        /// <summary>
+        /// Check file exist
+        /// </summary>
+        /// <param name="filename">The filename inkl. extention</param>
+        /// <returns>true if file was found, otherwise false</returns>
+        public bool CheckFileExist(string filename)
+        {
+            foreach (FileInfo fileInfo in Files)
+            {
+                if (fileInfo.Name == filename)
+                    return true;
+            }
+            return false;
+        }
         #endregion
     }
+    #endregion
 }
