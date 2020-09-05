@@ -66,6 +66,33 @@
             <param name="path">Filepath</param>
             <returns>T</returns>
         </member>
+        <member name="T:SoftwareBase.Services.TaskService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.Add(System.Threading.Tasks.Task)">
+            <summary>
+            Add task
+            </summary>
+            <param name="t">Task</param>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.Remove(System.Threading.Tasks.Task)">
+            <summary>
+            Remove task
+            </summary>
+            <param name="t">Task</param>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.CleanUp">
+            <summary>
+            Remove every task thats != Status.Running || Status.WaitingForActivation
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.WaitForTasks">
+            <summary>
+            Waits for all tasks
+            </summary>
+        </member>
         <member name="T:SoftwareBase.ViewModelBase.ViewModelBase">
             <summary>
             Base class of all ViewModels
