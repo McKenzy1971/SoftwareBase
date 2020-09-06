@@ -9,8 +9,8 @@ namespace SoftwareBase.Services
     /// </summary>
     public static class TaskService
     {
-        private static HashSet<Task> tasks;
-        private static readonly object locker = new object();
+        private static HashSet<Task> _tasks = new HashSet<Task>();
+        private static readonly object _locker = new object();
 
         /// <summary>
         /// Add task
@@ -18,8 +18,8 @@ namespace SoftwareBase.Services
         /// <param name="t">Task</param>
         public static void Add(Task t)
         {
-            lock (locker)
-                tasks.Add(t);
+            lock (_locker)
+                _tasks.Add(t);
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace SoftwareBase.Services
         /// <param name="t">Task</param>
         public static void Remove(Task t)
         {
-            lock (locker)
-                tasks.Remove(t);
+            lock (_locker)
+                _tasks.Remove(t);
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace SoftwareBase.Services
         /// </summary>
         public static void CleanUp()
         {
-            tasks.RemoveWhere((t) => t.Status != TaskStatus.Running || t.Status != TaskStatus.WaitingForActivation);
+            _tasks.RemoveWhere((t) => t.Status != TaskStatus.Running || t.Status != TaskStatus.WaitingForActivation);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace SoftwareBase.Services
         /// </summary>
         public static void WaitForTasks()
         {
-            Task.WaitAll(tasks.ToArray());
+            Task.WaitAll(_tasks.ToArray());
             TaskService.CleanUp();
         }
     }

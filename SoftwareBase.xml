@@ -109,5 +109,21 @@
             </summary>
             <param name="propertyName">Name of the property</param>
         </member>
+        <member name="T:WorkManager.Services.RefreshService">
+            <summary>
+            RefreshService
+            </summary>
+        </member>
+        <member name="E:WorkManager.Services.RefreshService.RefreshEvent">
+            <summary>
+            Refresh event
+            </summary>
+        </member>
+        <member name="M:WorkManager.Services.RefreshService.Refresh(System.Object)">
+            <summary>
+            Invokes Refresh event if it's not null
+            </summary>
+            <param name="sender">Object that called this method</param>
+        </member>
     </members>
 </doc>
