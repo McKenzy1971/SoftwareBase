@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SoftwareBase</name>
+    </assembly>
+    <members>
+        <member name="T:SoftwareBase.DelegateCommand.DelegateCommand`1">
+            <summary>
+            Base class for Commands
+            </summary>
+            <typeparam name="T">The type of the parameters of the methods that this object encapsulates.</typeparam>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+            <summary>
+            Initialates new instanz of DelegateCommand
+            </summary>
+            <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
+            <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.#ctor(System.Action{`0})">
+            <summary>
+            Initialate a new instanz of DelegateCommand. CanExecute is true by default.
+            </summary>
+            <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.RaiseCanExecuteChanged">
+            <summary>
+            Invokes CanExecuteChanged event
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.#ctor(System.Action,System.Predicate{System.Object})">
+            <summary>
+            Initialates new instanz of DelegateCommand
+            </summary>
+            <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
+            <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.#ctor(System.Action)">
+            <summary>
+            Initialate a new instanz of DelegateCommand. CanExecute is true by default.
+            </summary>
+            <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
+        </member>
+        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.RaiseCanExecuteChanged">
+            <summary>
+            Invokes CanExecuteChanged event
+            </summary>
+        </member>
+        <member name="T:SoftwareBase.Serialize.Serialize`1">
+            <summary>
+            Saves and loads XMl files
+            </summary>
+            <typeparam name="T">Type of object</typeparam>
+        </member>
+        <member name="M:SoftwareBase.Serialize.Serialize`1.SaveData(`0,System.String)">
+            <summary>
+            Creates or Overrides file
+            </summary>
+            <param name="obj">File to save</param>
+            <param name="path">Path of file</param>
+        </member>
+        <member name="M:SoftwareBase.Serialize.Serialize`1.LoadData(System.String)">
+            <summary>
+            Loads object (T)
+            </summary>
+            <param name="path">Filepath</param>
+            <returns>T</returns>
+        </member>
+        <member name="T:SoftwareBase.Services.TaskService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.Add(System.Threading.Tasks.Task)">
+            <summary>
+            Add task
+            </summary>
+            <param name="t">Task</param>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.Remove(System.Threading.Tasks.Task)">
+            <summary>
+            Remove task
+            </summary>
+            <param name="t">Task</param>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.CleanUp">
+            <summary>
+            Remove every task thats != Status.Running || Status.WaitingForActivation
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.Services.TaskService.WaitForTasks">
+            <summary>
+            Waits for all tasks
+            </summary>
+        </member>
+        <member name="T:SoftwareBase.ViewModelBase.ViewModelBase">
+            <summary>
+            Base class of all ViewModels
+            </summary>
+        </member>
+        <member name="E:SoftwareBase.ViewModelBase.ViewModelBase.PropertyChanged">
+            <summary>
+            PropertyChanged evant that represents the methods that's beeing called, if an property changed
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.ViewModelBase.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Called if an property has changed and PropertyChanged is't null
+            </summary>
+            <param name="propertyName">Name of the property</param>
+        </member>
+    </members>
+</doc>
