@@ -20,7 +20,7 @@ namespace SoftwareBase.DelegateCommand
             this.canExecuteHdl = canExecuteHdl;
             this.executeHdl = executeHdl;
             if (this.executeHdl == null)
-                throw new ArgumentNullException("executeHdl", "Please specifiy the command");
+                throw new ArgumentNullException(nameof(executeHdl), "Please specifiy the command");
         }
         /// <summary>
         /// Initialate a new instanz of DelegateCommand. CanExecute is true by default.
