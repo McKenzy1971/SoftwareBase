@@ -66,29 +66,9 @@
             Invokes CanExecuteChanged event
             </summary>
         </member>
-        <member name="T:SoftwareBase.Security.PasswordHasher">
-            <summary>
-            Generates and validates hashed passwords
-            </summary>
-        </member>
-        <member name="M:SoftwareBase.Security.PasswordHasher.HashPassword(System.Byte[])">
-            <summary>
-            Generates the Hashed password
-            </summary>
-            <param name="password">The password to hash</param>
-            <returns>salt|interations|hash</returns>
-        </member>
-        <member name="M:SoftwareBase.Security.PasswordHasher.IsValid(System.Byte[],System.String)">
-            <summary>
-            Validates password
-            </summary>
-            <param name="testPassword">Password to test</param>
-            <param name="originalHashedData">The original hashed data</param>
-            <returns>true if password is correct, otherwise false</returns>
-        </member>
         <member name="T:SoftwareBase.Services.TaskService">
             <summary>
-            
+            Provides methods to manage active tasks and wait for them
             </summary>
         </member>
         <member name="M:SoftwareBase.Services.TaskService.Add(System.Threading.Tasks.Task)">

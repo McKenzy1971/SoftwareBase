@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace SoftwareBase.Services
 {
     /// <summary>
-    /// 
+    /// Provides methods to manage active tasks and wait for them
     /// </summary>
     public static class TaskService
     {
