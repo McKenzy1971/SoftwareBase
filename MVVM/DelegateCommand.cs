@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace SoftwareBase.DelegateCommand
+namespace SoftwareBase.MVVM
 {
     /// <summary>
     /// Base class for Commands
@@ -40,9 +40,9 @@ namespace SoftwareBase.DelegateCommand
         /// </summary>
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, null);
 
-        public bool CanExecute(object parameter) => canExecuteHdl == null || canExecuteHdl((T)parameter) == true;
+        public bool CanExecute(object parameter) => this.canExecuteHdl == null || this.canExecuteHdl((T)parameter) == true;
 
-        public void Execute(object parameter) => executeHdl((T)parameter);
+        public void Execute(object parameter) => this.executeHdl((T)parameter);
         #endregion
     }
 
@@ -79,9 +79,9 @@ namespace SoftwareBase.DelegateCommand
         /// </summary>
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, null);
 
-        public bool CanExecute(object parameter) => canExecuteHdl == null || canExecuteHdl(parameter) == true;
+        public bool CanExecute(object parameter) => this.canExecuteHdl == null || this.canExecuteHdl(parameter) == true;
 
-        public void Execute(object parameter) => executeHdl();
+        public void Execute(object parameter) => this.executeHdl();
         #endregion
     }
 }

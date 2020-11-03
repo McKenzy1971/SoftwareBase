@@ -24,47 +24,63 @@
             <param name="path">Filepath</param>
             <returns>T</returns>
         </member>
-        <member name="T:SoftwareBase.DelegateCommand.DelegateCommand`1">
+        <member name="T:SoftwareBase.MVVM.DelegateCommand`1">
             <summary>
             Base class for Commands
             </summary>
             <typeparam name="T">The type of the parameters of the methods that this object encapsulates.</typeparam>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand`1.#ctor(System.Action{`0},System.Predicate{`0})">
             <summary>
             Initialates new instanz of DelegateCommand
             </summary>
             <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
             <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.#ctor(System.Action{`0})">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand`1.#ctor(System.Action{`0})">
             <summary>
             Initialate a new instanz of DelegateCommand. CanExecute is true by default.
             </summary>
             <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand`1.RaiseCanExecuteChanged">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand`1.RaiseCanExecuteChanged">
             <summary>
             Invokes CanExecuteChanged event
             </summary>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.#ctor(System.Action,System.Predicate{System.Object})">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand.#ctor(System.Action,System.Predicate{System.Object})">
             <summary>
             Initialates new instanz of DelegateCommand
             </summary>
             <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
             <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.#ctor(System.Action)">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand.#ctor(System.Action)">
             <summary>
             Initialate a new instanz of DelegateCommand. CanExecute is true by default.
             </summary>
             <param name="executeHdl">Encapsulates the method that's been called at Execute</param>
         </member>
-        <member name="M:SoftwareBase.DelegateCommand.DelegateCommand.RaiseCanExecuteChanged">
+        <member name="M:SoftwareBase.MVVM.DelegateCommand.RaiseCanExecuteChanged">
             <summary>
             Invokes CanExecuteChanged event
             </summary>
+        </member>
+        <member name="T:SoftwareBase.MVVM.ViewModelBase">
+            <summary>
+            Base class of all ViewModels
+            </summary>
+        </member>
+        <member name="E:SoftwareBase.MVVM.ViewModelBase.PropertyChanged">
+            <summary>
+            PropertyChanged evant that represents the methods that's beeing called, if an property changed
+            </summary>
+        </member>
+        <member name="M:SoftwareBase.MVVM.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            Called if an property has changed and PropertyChanged is't null
+            </summary>
+            <param name="propertyName">Name of the property</param>
         </member>
         <member name="T:SoftwareBase.Services.TaskService">
             <summary>
@@ -92,22 +108,6 @@
             <summary>
             Waits for all tasks
             </summary>
-        </member>
-        <member name="T:SoftwareBase.ViewModelBase.ViewModelBase">
-            <summary>
-            Base class of all ViewModels
-            </summary>
-        </member>
-        <member name="E:SoftwareBase.ViewModelBase.ViewModelBase.PropertyChanged">
-            <summary>
-            PropertyChanged evant that represents the methods that's beeing called, if an property changed
-            </summary>
-        </member>
-        <member name="M:SoftwareBase.ViewModelBase.ViewModelBase.OnPropertyChanged(System.String)">
-            <summary>
-            Called if an property has changed and PropertyChanged is't null
-            </summary>
-            <param name="propertyName">Name of the property</param>
         </member>
         <member name="T:WorkManager.Services.RefreshService">
             <summary>

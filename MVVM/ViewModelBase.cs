@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 
-namespace SoftwareBase.ViewModelBase
+namespace SoftwareBase.MVVM
 {
     /// <summary>
     /// Base class of all ViewModels
