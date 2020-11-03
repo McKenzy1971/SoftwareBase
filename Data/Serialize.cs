@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
 
-namespace SoftwareBase.Serialize
+namespace SoftwareBase.Data
 {
     /// <summary>
     /// Saves and loads XMl files
@@ -9,7 +9,7 @@ namespace SoftwareBase.Serialize
     /// <typeparam name="T">Type of object</typeparam>
     public static class Serialize<T>
     {
-        private static XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+        private static readonly XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
         /// <summary>
         /// Creates or Overrides file
         /// </summary>

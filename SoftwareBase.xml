@@ -4,6 +4,26 @@
         <name>SoftwareBase</name>
     </assembly>
     <members>
+        <member name="T:SoftwareBase.Data.Serialize`1">
+            <summary>
+            Saves and loads XMl files
+            </summary>
+            <typeparam name="T">Type of object</typeparam>
+        </member>
+        <member name="M:SoftwareBase.Data.Serialize`1.SaveData(`0,System.String)">
+            <summary>
+            Creates or Overrides file
+            </summary>
+            <param name="obj">File to save</param>
+            <param name="path">Path of file</param>
+        </member>
+        <member name="M:SoftwareBase.Data.Serialize`1.LoadData(System.String)">
+            <summary>
+            Loads object (T)
+            </summary>
+            <param name="path">Filepath</param>
+            <returns>T</returns>
+        </member>
         <member name="T:SoftwareBase.DelegateCommand.DelegateCommand`1">
             <summary>
             Base class for Commands
@@ -46,25 +66,25 @@
             Invokes CanExecuteChanged event
             </summary>
         </member>
-        <member name="T:SoftwareBase.Serialize.Serialize`1">
+        <member name="T:SoftwareBase.Security.PasswordHasher">
             <summary>
-            Saves and loads XMl files
+            Generates and validates hashed passwords
             </summary>
-            <typeparam name="T">Type of object</typeparam>
         </member>
-        <member name="M:SoftwareBase.Serialize.Serialize`1.SaveData(`0,System.String)">
+        <member name="M:SoftwareBase.Security.PasswordHasher.HashPassword(System.Byte[])">
             <summary>
-            Creates or Overrides file
+            Generates the Hashed password
             </summary>
-            <param name="obj">File to save</param>
-            <param name="path">Path of file</param>
+            <param name="password">The password to hash</param>
+            <returns>salt|interations|hash</returns>
         </member>
-        <member name="M:SoftwareBase.Serialize.Serialize`1.LoadData(System.String)">
+        <member name="M:SoftwareBase.Security.PasswordHasher.IsValid(System.Byte[],System.String)">
             <summary>
-            Loads object (T)
+            Validates password
             </summary>
-            <param name="path">Filepath</param>
-            <returns>T</returns>
+            <param name="testPassword">Password to test</param>
+            <param name="originalHashedData">The original hashed data</param>
+            <returns>true if password is correct, otherwise false</returns>
         </member>
         <member name="T:SoftwareBase.Services.TaskService">
             <summary>
