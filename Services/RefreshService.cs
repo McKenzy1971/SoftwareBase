@@ -16,9 +16,6 @@ namespace WorkManager.Services
         /// Invokes Refresh event if it's not null
         /// </summary>
         /// <param name="sender">Object that called this method</param>
-        public static void Refresh(object sender)
-        {
-            RefreshEvent?.Invoke(sender, EventArgs.Empty);
-        }
+        public static void Refresh(object sender) => RefreshEvent?.Invoke(sender, EventArgs.Empty);
     }
 }

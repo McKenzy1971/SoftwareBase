@@ -17,8 +17,8 @@ namespace SoftwareBase.Data
         /// <param name="path">Path of file</param>
         public static void SaveData(T obj, string path)
         {
-            using (Stream s = File.Create(path))
-                xmlSerializer.Serialize(s, obj);
+            using Stream s = File.Create(path);
+            xmlSerializer.Serialize(s, obj);
         }
         /// <summary>
         /// Loads object (T)
@@ -29,7 +29,10 @@ namespace SoftwareBase.Data
         {
             T result;
             using (Stream s = File.OpenRead(path))
+            {
                 result = (T)xmlSerializer.Deserialize(s);
+            }
+
             return result;
         }
     }

@@ -17,10 +17,12 @@ namespace SoftwareBase.MVVM
         /// <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
         public DelegateCommand(Action<T> executeHdl, Predicate<T> canExecuteHdl)
         {
-            this.canExecuteHdl = canExecuteHdl;
-            this.executeHdl = executeHdl;
-            if (this.executeHdl == null)
+            this.CanExecuteHdl = canExecuteHdl;
+            this.ExecuteHdl = executeHdl;
+            if (this.ExecuteHdl == null)
+            {
                 throw new ArgumentNullException(nameof(executeHdl), "Please specifiy the command");
+            }
         }
         /// <summary>
         /// Initialate a new instanz of DelegateCommand. CanExecute is true by default.
@@ -29,8 +31,8 @@ namespace SoftwareBase.MVVM
         public DelegateCommand(Action<T> executeHdl) : this(executeHdl, null) { }
         #endregion
 
-        private Action<T> executeHdl { get; set; }
-        private Predicate<T> canExecuteHdl { get; set; }
+        private Action<T> ExecuteHdl { get; set; }
+        private Predicate<T> CanExecuteHdl { get; set; }
 
         public event EventHandler CanExecuteChanged;
 
@@ -40,9 +42,9 @@ namespace SoftwareBase.MVVM
         /// </summary>
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, null);
 
-        public bool CanExecute(object parameter) => this.canExecuteHdl == null || this.canExecuteHdl((T)parameter) == true;
+        public bool CanExecute(object parameter) => this.CanExecuteHdl == null || this.CanExecuteHdl((T)parameter) == true;
 
-        public void Execute(object parameter) => this.executeHdl((T)parameter);
+        public void Execute(object parameter) => this.ExecuteHdl((T)parameter);
         #endregion
     }
 
@@ -56,10 +58,12 @@ namespace SoftwareBase.MVVM
         /// <param name="canExecuteHdl">Encapsulates the method that's been called to check CanExecute</param>
         public DelegateCommand(Action executeHdl, Predicate<object> canExecuteHdl)
         {
-            this.canExecuteHdl = canExecuteHdl;
-            this.executeHdl = executeHdl;
-            if (this.executeHdl == null)
+            this.CanExecuteHdl = canExecuteHdl;
+            this.ExecuteHdl = executeHdl;
+            if (this.ExecuteHdl == null)
+            {
                 throw new ArgumentNullException(nameof(executeHdl), "Please specifiy the command");
+            }
         }
         /// <summary>
         /// Initialate a new instanz of DelegateCommand. CanExecute is true by default.
@@ -68,8 +72,8 @@ namespace SoftwareBase.MVVM
         public DelegateCommand(Action executeHdl) : this(executeHdl, null) { }
         #endregion
 
-        private Action executeHdl { get; set; }
-        private Predicate<object> canExecuteHdl { get; set; }
+        private Action ExecuteHdl { get; set; }
+        private Predicate<object> CanExecuteHdl { get; set; }
 
         public event EventHandler CanExecuteChanged;
 
@@ -79,9 +83,9 @@ namespace SoftwareBase.MVVM
         /// </summary>
         public void RaiseCanExecuteChanged() => this.CanExecuteChanged?.Invoke(this, null);
 
-        public bool CanExecute(object parameter) => this.canExecuteHdl == null || this.canExecuteHdl(parameter) == true;
+        public bool CanExecute(object parameter) => this.CanExecuteHdl == null || this.CanExecuteHdl(parameter) == true;
 
-        public void Execute(object parameter) => this.executeHdl();
+        public void Execute(object parameter) => this.ExecuteHdl();
         #endregion
     }
 }
