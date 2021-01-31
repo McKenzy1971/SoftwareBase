@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <Version>1.3.5-alpha-71</Version>
+    <Version>1.3.5-rc-01</Version>
     <AssemblyVersion>1.3.0.0</AssemblyVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Dennis Schröter.pfx</AssemblyOriginatorKeyFile>
-    <FileVersion>1.3.97.5</FileVersion>
+    <FileVersion>1.3.103.5</FileVersion>
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
